@@ -11,9 +11,10 @@ namespace newEmpty.Controllers
             return View();
         }
 
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+
     }
 }
-
-// TO FIX
-
-// Add fonctionne mais ne tien pas antécédent + allergies

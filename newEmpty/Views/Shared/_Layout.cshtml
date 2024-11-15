@@ -64,6 +64,11 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="FAQ"> FAQ <i class="bi bi-question-circle"></i></a>
+                        </li>
+
                         <span class="navbar-text">Bienvenu, @User.Identity.Name!</span>
                         <a asp-action="Logout" asp-controller="Account">Se déconnecter</a>
                     }
