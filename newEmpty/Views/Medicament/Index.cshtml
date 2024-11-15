@@ -1,0 +1,75 @@
+@model IEnumerable<Medicament>
+@{
+    <html>
+
+    <head>
+        <title>Index</title>
+    </head>
+
+    <body>
+        <h1 class="centrer">Gestions des medicament</h1>
+
+        <input type="text" id="EntreeRecherche" placeholder="Rechercher... ">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">Medicament</th>
+                    <th scope="col">Details</th>
+                    <th scope="col"> Retirer un médicament</th>
+                    <th scope="col"> Modifier un médicament </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var medicament in Model)
+                {
+                    <tr class="element">
+                        <td></td>
+                        <td scope="row" class="text_search">@medicament.Nom_med</td> 
+                        
+                        <td scope="row"><a asp-controller="Medicament" asp-action="ShowDetails" asp-route-id="@medicament.MedicamentId">
+                                Détail</a></td>
+                        <td scope="row"><a asp-controller="Medicament" asp-action="Remove" asp-route-id="@medicament.MedicamentId">
+                                Retirer</a> </td>
+                        <td scope="row"><a asp-controller="Medicament" asp-action="Edit" asp-route-id="@medicament.MedicamentId">
+                                Modifier</a> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <button type="button" class="btn btn-light">
+                <a asp-controller="Medicament" asp-action="Add"> Ajouter un médicament </a>
+            </button>
+        </div>
+
+
+
+        <script>
+            document.getElementById('EntreeRecherche').addEventListener('keyup', function () {
+
+                var texteRecherche = this.value.toLowerCase();
+                var Element = document.querySelectorAll('.element');
+
+                Element.forEach(function (card) {
+                    var mednom = card.querySelector('.text_search').textContent.toLowerCase(); //case a rechercher
+                    if (mednom.includes (texteRecherche)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+        </script>
+    </body>
+
+
+
+    </html>
+
+
+}

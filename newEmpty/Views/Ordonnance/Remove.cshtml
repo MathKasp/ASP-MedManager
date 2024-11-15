@@ -1,0 +1,29 @@
+@model Ordonnance
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Retirer une Ordonnance</title>
+
+    </head>
+
+    <body>
+        <h1 class="centrer"> Etes vous certain de vouloir retirer cette Ordonnance ? </h1>
+        
+        <form asp-action="RemoveConfirm" method="post" class="centrer">
+
+            <input asp-for="OrdonnanceId" type="hidden" />
+
+            <div class="centrer">            
+                <input type="submit" value="Oui je veut retirer cet élément" class="btn btn-danger" />
+                <input type="button" onclick="history.back()" value="Non je ne veut plus" class="btn btn-secondary" />
+            </div>
+        </form>
+
+    </body>
+
+</html>
