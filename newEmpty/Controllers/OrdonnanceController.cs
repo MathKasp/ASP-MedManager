@@ -393,7 +393,7 @@ namespace newEmpty.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // si déconnecté il refuse l'action
+        [ValidateAntiForgeryToken] // Couche de sécurité (attaque a l'injection CSRF (Cross Site Request Forgery))
         public async Task<IActionResult> RemoveConfirm(int OrdonnanceId)
         {
             List<Ordonnance> ordonnances = new List<Ordonnance>();
@@ -409,6 +409,41 @@ namespace newEmpty.Controllers
             }
             return NotFound();
         }
-        #endregion 
+        #endregion
+
+        #region EXPORT PDF
+        public async Task<IActionResult> ExportPDF(int OrdonnanceId)
+        {
+            var Medecin = await _userManager.GetUserAsync(User);
+            var ordonnance = await _context.Ordonnances
+                .Include(o => o.Medicaments)
+                .Include(o => o.Patient)
+                .FirstOrDefaultAsync(o => o.OrdonnanceId == OrdonnanceId);
+
+            var repository = Path.Combine(Directory.GetCurrentDirectory(), "PDF");
+
+            if (ordonnance != null && Medecin != null && ordonnance.Patient != null)
+            {
+                string fileName = $"Ordonnance{ordonnance.Patient.Nom_p}_{OrdonnanceId}.pdf";
+                string filePath = Path.Combine(repository, fileName);
+                var pdfGenerateur = new OrdonnancePdfGenerateur();
+
+                pdfGenerateur.GenerateOrdonnance(filePath, Medecin, ordonnance.Patient, ordonnance);
+
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound("Le fichier PDF n'a pas pu être créé.");
+                }
+                var fileBytes = System.IO.File.ReadAllBytes(filePath);
+                return File(fileBytes, "application/pdf", fileName);
+            }        
+            else
+                return NotFound();
+
+
+
+        }
+
+        #endregion
     }
 }
