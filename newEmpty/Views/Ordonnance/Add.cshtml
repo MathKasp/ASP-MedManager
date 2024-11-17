@@ -14,12 +14,12 @@
     </div>
 
     <div class="form-group">
-        Duree du traitement<input asp-for="Duree_traitement" class="form-control"/>
+        Durée du traitement<input asp-for="Duree_traitement" class="form-control"/>
         <span asp-validation-for="Duree_traitement" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        Instructions specifiques <input asp-for="Instructions_specifique"
+        Instructions spécifiques <input asp-for="Instructions_specifique"
             class="form-control" />
         <span asp-validation-for="Instructions_specifique" class="text-danger"></span>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-group">
         Patient concerné
         <select asp-for="PatientId" class="form-control">
-            <option value="" >Sélectionné le patient</option>
+            <option value="" >Sélectionner le patient</option>
             @foreach (var pat in Model.Patients)
             {
                     <option value="@pat.PatientId">@pat.Nom_p @pat.Prenom_p </option>
@@ -36,7 +36,7 @@
         <span asp-validation-for="PatientId" class="text-danger"></span>
     </div>
 
-    <div>Medicaments</div>
+    <div>Médicaments</div>
 
     <div class="form-group">
         @foreach (var med in Model.Medicaments)

@@ -6,23 +6,23 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit</title>
+        <title>éditer</title>
     </head>
 
     <body>
-        <h1 class="centrer">De quelle facon editer cet élément ?</h1>
+        <h1 class="centrer">De quelle facon éditer cet élément ?</h1>
 
         <form asp-action="Edit" asp-controller="Antecedent" method="post">
             <div asp-validation-summary ="ModelOnly" class="text-danger"></div>
             <input asp-for="Antecedent.AntecedentId" type="hidden" />
 
             <div class="form-group">
-                Antecedent 
+                Antécédent 
                 <input asp-for="Antecedent.Nom_Antecedent" class="form-control" />
                 <span asp-validation-for="Antecedent.Nom_Antecedent" class="text-danger"></span>
             </div>
 
-            <div> Médicaments a proscrires </div>
+            <div> Médicaments à proscrire </div>
             <div class="form-group">
 
                 @foreach (var medicament in Model.Medicaments)

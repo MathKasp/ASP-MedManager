@@ -11,15 +11,19 @@
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @* * *@
 
+<br>
+
 <div>
-  <h1 class="centrer">Bienvenue dans l'espace dédié a la foire aux questions !</h1>
+  <h1 class="centrer">Bienvenue dans l'espace dédié à la foire aux questions !</h1>
 
   <h2 class="centrer">
-    Vous pourrez retrouver ici les réponses a certaines questions d'ordre pratique quand a l'utilisation de cette application.
+    Vous pourrez retrouver ici les réponses à certaines questions d'ordre pratique quant à l'utilisation de cette application.
   </h2>
 </div>
 
-
+<br>
+<br>
+<br>
 <div class="accordion" id="accordionExample">
 
   <div class="accordion-item">
@@ -27,24 +31,20 @@
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
         aria-expanded="true" aria-controls="collapseOne">
-        J'aimerai ajouter mon patient dans la base de donnée, comment faire ?
+        <strong>Comment ajouter un patient à la base de données de l'application ?</strong>
       </button>
     </h2>
 
     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>Pour ajouter un patient a la base de donnée</strong>, vous devrez 
-        d'abord accéder a l'espace de l'application dédié a la gestion des patients. <br>
-        Pour ce faire, cherchez parmis les boutons a votre disposition dans l'en tête de l'application celui qui se nomme "Patient". 
-        En cliquant sur ce dernier vous serez automatiquement redirigé dans le bon espace ! 
-        <strong>si vous avez un doute, pas de panique ! vous pourrez toujours accéder au menu, peut importe ou 
-          vous vous situerez dans l'application ! (sinon vous pouvez revenir a la page précédente depuis votre navigateur) </strong>. 
-          <br> Une fois dans le bon espace, plusieur options de gestion s'offrent a vous 
-          (vous pouvez consulter les détails d'un patient déjà existant, vous pouvez aussi en modifier les informations ou 
-          encore le retirer de la liste). Pour ajouter un nouveau patient, il faut cliquer sur le bouton "Ajouter un patient". 
-          <br> Un formulaire s'affiche alors, il faut veiller a bien remplir correctement chacun des chant puis valider a l'aide du 
-          bouton du même nom pour ajouter le nouveau patient a l'application. (Attention, veillez a bien renseigner le chant du Sexe 
-          par un M si le patient est de sexe masculin ou par un F si le patient est de sexe féminin)
+        <strong>Pour ajouter un patient à la base de données</strong>, cliquez sur le bouton Patient dans l'entête de l'application 
+        pour accéder à l'espace de gestion des patients. Pas d'inquiétude si vous vous perdez, vous pouvez toujours revenir au 
+        menu ou à la page précédente via votre <strong>navigateur</strong>.
+        <br> Une fois dans cet espace, plusieurs options s'offrent à vous, comme consulter, modifier ou supprimer un patient existant. 
+        <br>Pour ajouter un nouveau patient, cliquez sur "Ajouter un patient".
+        <br>Remplissez le formulaire en faisant attention à chaque champ, et assurez-vous de bien indiquer le sexe : "M" pour masculin 
+        ou "F" pour féminin. 
+        <br>Une fois terminé, cliquez sur Valider pour ajouter le patient.
       </div>
     </div>
 
@@ -56,17 +56,18 @@
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
         aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
+        <strong>Mon Patient est atteint d'une allergie qui proscrit certains traitements, comment faire pour préciser quels médicaments éviter ?</strong>
       </button>
     </h2>
 
     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin
-        adds the appropriate classes that we use to style each element. These classes control the overall appearance, as
-        well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our
-        default variables. It's also worth noting that just about any HTML can go within the
-        <code>.accordion-body</code>, though the transition does limit overflow.
+        <strong>Pour modifier les médicaments à éviter dans le cadre d'une allergie précise</strong>
+        cliquez sur le bouton Allergie dans la barre de menu pour accéder à l'espace des allergies.
+        <br>Une fois dans cet espace, cherchez l'allergie qui concerne votre patient dans la liste affichée. 
+        <br>Ensuite, cliquez sur le bouton Modifier situé sur la même ligne pour accéder à l'espace de modification.
+        Une fois dans l'espace de modification, cochez ou décochez les médicaments à éviter pour cette allergie.
+        <br>Enfin vérifiez que les modifications sont correctes, puis validez pour enregistrer les changements.
       </div>
     </div>
 
@@ -78,17 +79,34 @@
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
         aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
+        <strong>J'ai créé une ordonnance au mauvais patient, comment corriger cette erreur ?</strong>
       </button>
     </h2>
 
     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
-        adds the appropriate classes that we use to style each element. These classes control the overall appearance, as
-        well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our
-        default variables. It's also worth noting that just about any HTML can go within the
-        <code>.accordion-body</code>, though the transition does limit overflow.
+        <strong>Pour changer le patient d'une ordonnance</strong> cliquez sur le bouton Ordonnance dans la barre de menu pour accéder à l'espace correspondant.
+        <br>Trouvez l'ordonnance que vous souhaitez modifier, puis cliquez sur le bouton Modifier sur la même ligne.
+        <br> Dans l'espace dédié au patient, sélectionnez le nouveau patient, puis cliquez sur le bouton de validation pour enregistrer les changements.
+      </div>
+    </div>
+
+  </div>
+
+    <div class="accordion-item">
+    
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+        aria-expanded="false" aria-controls="collapseThree">
+        <strong>Comment être certain que mes collègues ne modifient pas mes ordonnances ?</strong>
+      </button>
+    </h2>
+
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>Aucune inquiétude à ce sujet !</strong> 
+        <br> MedManager est une application sécurisée, seules les ordonnances créées par un medecin sont visibles par ce dernier.
+        <br> <strong>Prenez simplement garde à ne pas perdre vos identifiants ainsi que votre mot de passe.</strong>
       </div>
     </div>
 

@@ -48,31 +48,6 @@ public class OrdonnancePdfGenerateur
 
             table.AddCell(leftCell);
 
-            // Cell rightCell = new Cell();
-            // rightCell.SetBorder(Border.NO_BORDER);
-
-            // rightCell.Add(new Paragraph($"Lyon youhou")
-            // .SetItalic()
-            // .SetFontSize(10)
-            // .SetTextAlignment(TextAlignment.RIGHT)
-            // .SetFontColor(Bleu));
-            
-            // rightCell.Add(new Paragraph($"encore lyon youhou")
-            // .SetItalic()
-            // .SetFontSize(10)
-            // .SetTextAlignment(TextAlignment.RIGHT)
-            // .SetFontColor(Bleu));
-
-            // Paragraph lineSeparatorParagraph = new Paragraph().Add(lineSeparator).SetTextAlignment(TextAlignment.RIGHT);
-            // rightCell.Add(lineSeparatorParagraph);
-            // rightCell.Add(new Paragraph($"07 66 66 66 66 66 66 66 66 66 66 66 66 ")
-            // .SetItalic()
-            // .SetFontSize(10)
-            // .SetTextAlignment(TextAlignment.RIGHT)
-            // .SetFontColor(Bleu));
-
-            // table.AddCell(rightCell);
-
             document.Add(table);
 
             document.Add(new Paragraph("\n"));
@@ -93,40 +68,29 @@ public class OrdonnancePdfGenerateur
             else
                 civilite = "";
 
-			document.Add(new Paragraph($"{civilite} {patient.Nom_p}")
-				.SetFont(bold)
-				.SetFontSize(12));
+            document.Add(new Paragraph($"{civilite} {patient.Nom_p}")
+                .SetFont(bold)
+                .SetFontSize(12));
 
-			document.Add(new Paragraph("\n"));
-			document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph("\n"));
 
-			foreach (var medicament in ordonnance.Medicaments)
-			{
-				document.Add(new Paragraph($"{medicament.Nom_med}")
-					.SetFont(bold)
-					.SetFontSize(12));
+            
+            document.Add(new Paragraph($"{ordonnance.Posologie}")
+                .SetFontSize(10));
+            document.Add(new Paragraph($"{ordonnance.Instructions_specifique}")
+                .SetFontSize(10));
 
-				document.Add(new Paragraph($"{ordonnance.Posologie}")
-					.SetFontSize(10));
-                document.Add(new Paragraph($"{medicament.Contre_indication}")
-					.SetFontSize(10));
-			}
+            foreach (var medicament in ordonnance.Medicaments)
+            {
+                document.Add(new Paragraph($"{medicament.Nom_med}")
+                    .SetFont(bold)
+                    .SetFontSize(12));
+                document.Add(new Paragraph($" Sauf si : {medicament.Contre_indication}")
+                    .SetFontSize(10));
+            }
 
-			// document.Add(new Paragraph("\n\nSignature :")
-			// 	.SetTextAlignment(TextAlignment.RIGHT));
-
-			// document.Add(new Paragraph("En cas d'urgence, contactez le 15")
-			// 	.SetFontColor(Bleu)
-			// 	.SetBold()
-			// 	.SetTextAlignment(TextAlignment.JUSTIFIED)
-			// 	.SetFixedPosition(36, 55, pdf.GetDefaultPageSize().GetWidth() - 72));
-			// document.Add(new Paragraph("Membre d'une association de gestion agrée\n Le réglement des honoraires par chèques est accepté.")
-			// .SetTextAlignment(TextAlignment.JUSTIFIED)
-			// .SetFontColor(Bleu)
-			// .SetFixedPosition(36, 20, pdf.GetDefaultPageSize().GetWidth() - 72));
-
-
-			document.Close();
-		}
-	}
+            document.Close();
+        }
+    }
 }

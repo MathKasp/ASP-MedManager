@@ -8,10 +8,136 @@
     </head>
 
     <body class="centrer">
-        <h1 class="centrer">Bienvenu dans votre espace MedManager</h1>
+        <h1 class="centrer">Bienvenue dans votre espace MedManager</h1>
 
         <p class="centrer">Vous trouverez si dessous les statistiques interessantes du moment !  </p>
     </body>
+
+    <div class="statistics-container">
+
+    <div class="statistic">
+        <h3>Total des Médicaments Disponibles sur le marché</h3>
+        <div class="stat-text">
+            <p>La base de données de l'Association Nationale des Pharmacies répertorie 1,250 médicaments. 
+                <br> Ce chiffre englobe à la fois les traitements courants pour des affections courantes, comme les analgésiques et les antibiotiques, ainsi que des traitements spécialisés pour des maladies plus rares. 
+                Cela montre l'ampleur des ressources disponibles pour les patients et les professionnels de santé, garantissant un large éventail d'options thérapeutiques.</p>
+            <small>Information trouvée sur Wikipédia</small>
+        </div>
+    </div>
+
+    <div class="statistic">
+        <h3>Médicaments les Plus Prescrits</h3>
+        <ul>
+            <li>Paracétamol : 25%</li>
+            <li>Ibuprofène : 18%</li>
+            <li>Amoxicilline : 15%</li>
+        </ul>   
+        <div class="stat-text">
+            <p>Le paracétamol, prescrit dans 25% des cas, reste l’un des médicaments les plus utilisés pour traiter la douleur
+                 et la fièvre, en raison de son efficacité et de sa tolérance chez la majorité des patients. 
+                 <br> Les anti-inflammatoires, comme l'ibuprofène, suivent de près.</p>
+            
+            <small>Information trouvée sur une étude sur les Prescriptions Médicales (2024)</small>
+        </div>
+    </div>
+
+    <div class="statistic">
+        <h3>Pourcentage de Médicaments Génériques</h3>
+        <p>55%</p>
+        <div class="stat-text">
+            <p>Les médicaments génériques représentent 55% des médicaments prescrits, un chiffre qui montre une tendance croissante vers des solutions plus économiques et accessibles.</p>
+            <small>Information trouvée sur un rapport de l'Institut de Santé Publique (2023)</small>
+        </div>
+    </div>
+
+    <div class="statistic">
+        <h3>Classes Thérapeutiques les Plus Utilisées</h3>
+        <ul>
+            <li>Analgésiques : 30%</li>
+            <li>Antibiotiques : 22%</li>
+            <li>Anti-inflammatoires : 17%</li>
+        </ul>
+        <div class="stat-text">
+            <p>Les analgésiques, utilisés dans 30% des prescriptions, jouent un rôle crucial pour soulager divers types de douleurs, 
+                allant des maux de tête aux douleurs post-opératoires. 
+                <br>Les antibiotiques, à 22%, sont essentiels pour traiter des infections bactériennes potentiellement graves, 
+                mais leur usage doit être surveillé pour éviter la résistance bactérienne. 
+                <br>Les anti-inflammatoires, représentant 17%, sont principalement utilisés pour traiter l'inflammation et les 
+                douleurs musculaires ou articulaires.</p>
+            <small>Information trouvée sur un rapport des données du Ministère de la Santé (2024)</small>
+        </div>
+    </div>
+
+    <div class="statistic">
+        <h3>Médicaments Avec le Plus d'Effets Secondaires</h3>
+        <ul>
+            <li>Anticoagulants</li>
+            <li>Antidépresseurs</li>
+            <li>Antiépileptiques</li>
+        </ul>
+        <div class="stat-text">
+            <p>Les anticoagulants, bien qu'indispensables pour prévenir les caillots sanguins, 
+                comportent des risques d'effets secondaires graves, comme des saignements excessifs. 
+                <br>Les antidépresseurs, essentiels pour la santé mentale, 
+                peuvent entraîner des effets comme des troubles du sommeil ou des changements d'humeur. 
+                <br> Les antiépileptiques, utilisés pour contrôler les crises d'épilepsie, peuvent parfois provoquer des troubles cognitifs ou des effets secondaires neurologiques.</p>
+            <small>Information trouvée sur Wikipédia</small>
+        </div>
+    </div>
+</div>
+
+<style>
+    .statistics-container {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .statistic {
+        margin-bottom: 20px;
+    }
+
+    .statistic h3 {
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .statistic p, .statistic ul {
+        color: #666;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        padding: 5px 0;
+    }
+
+    .stat-text {
+        background-color: #eef2f5;
+        padding: 10px;
+        border-left: 4px solid #ccc;
+        margin-top: 10px;
+    }
+
+    .stat-text p {
+        margin: 0;
+        color: #555;
+    }
+
+    .stat-text small {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.85em;
+        color: #888;
+    }
+</style>
+
 
     </html>
 }

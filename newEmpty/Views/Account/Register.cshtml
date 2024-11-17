@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <h1> Bienvenu dans l'espace pour créer votre profil </h1>
+    <h1> Bienvenue dans l'espace pour créer votre profil </h1>
 
     <form asp-action="Register" asp-controller="Account" method="post">
 
         <div class="form-group">
 
-            <label asp-for="UserName"></label>
+            <label>Nom d'utilisateur</label>
             <input asp-for="UserName" class="form-control" />
             <span asp-validation-for="UserName" class="text-danger"></span>
 
@@ -24,7 +24,7 @@
 
         <div class="form-group">
 
-            <label asp-for="Password"></label>
+            <label>Mot de passe</label>
             <input asp-for="Password" class="form-control" />
             <span asp-validation-for="Password" class="text-danger"></span>
 
@@ -32,7 +32,7 @@
 
         <div class="form-group">
 
-            <label asp-for="Nom_m"></label>
+            <label> Nom </label>
             <input asp-for="Nom_m" class="form-control" />
             <span asp-validation-for="Nom_m" class="text-danger"></span>
 
@@ -40,7 +40,7 @@
 
         <div class="form-group">
 
-            <label asp-for="Prenom_m"></label>
+            <label> Prénom </label>
             <input asp-for="Prenom_m" class="form-control" />
             <span asp-validation-for="Prenom_m" class="text-danger"></span>
 
@@ -48,14 +48,14 @@
 
         <div class="form-group">
 
-            <label asp-for="Identifiant_m"></label>
+            <label> Identifiant du Médecin </label>
             <input asp-for="Identifiant_m" class="form-control" />
             <span asp-validation-for="Identifiant_m" class="text-danger"></span>
 
         </div>
 
         <div class="form-group row">
-            <label asp-for="Date"></label>
+            <labe> Date de naissance</label>
 
             <input asp-for="Date" class="form-control" type="date" />
             <span asp-validation-for="Date" class="text-danger"></span>

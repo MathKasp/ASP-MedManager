@@ -7,7 +7,7 @@
     <input type="hidden" asp-for="OrdonnanceId" />
 
     <p class="form-group">
-        Posologie a respecter.
+        Posologie à respecter.
         <input asp-for="Posologie" class="form-control" />
         <span asp-validation-for="Posologie" class="text-danger"></span>
     </p>
@@ -31,7 +31,7 @@
         <span asp-validation-for="Patient" class="text-danger"></span>
     </div>
 
-    <div>Medicaments prescrits</div>
+    <div>Médicaments prescrits</div>
 
     <div class="form-group">
         @foreach (var med in Model.Medicaments)
@@ -56,5 +56,5 @@
 <div>
     <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
 
-    <a asp-action="ExportPDF" asp-route-ordonnanceId="@Model.OrdonnanceId" class="btn btn-secondary">Télécharger l'ordonnance Ajouter format PDF</a>
+    <a asp-action="ExportPDF" asp-route-ordonnanceId="@Model.OrdonnanceId" class="btn btn-secondary">Télécharger l'ordonnance au format PDF</a>
 </div>

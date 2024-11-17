@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1> Bienvenu dans l'espace pour ajouter un allergie </h1>
+    <h1> Bienvenue dans l'espace pour ajouter une allergie </h1>
 
     <form asp-action="AddConfirmed" asp-controller="Allergie" method="post">
 
@@ -18,14 +18,14 @@
 
         <div class="form-group">
 
-            nom de la nouvelle Allergie
+            Nom de la nouvelle allergie
             <input asp-for="Allergie.Nom_Allergie" class="form-control" />
 
             <span asp-validation-for="Allergie.Nom_Allergie" class="text-danger"></span>
         </div>
 
-        <div> Médicaments a proscrires </div>
-        <div class="form-group">
+        <div> Médicaments à proscrire </div>
+        <div class="form-group" class="centrer">
 
             @foreach (var medicament in Model.Medicaments)
             {
@@ -43,7 +43,7 @@
         <br />
         <br />
 
-        <input type="submit" value="Créer un nouvel allergie" class="btn btn-primary" />
+        <input type="submit" value="Créer une nouvelle allergie" class="btn btn-primary" />
         <a asp-action="Index" type="button" class="btn btn-secondary">Retour</a> 
     </form>
 
