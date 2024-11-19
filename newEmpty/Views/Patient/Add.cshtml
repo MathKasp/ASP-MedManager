@@ -33,9 +33,14 @@
         </div>
 
         <div class="form-group">
-
-            <label asp-for="Patient.Sexe_p"></label>
-            <input asp-for="Patient.Sexe_p" class="form-control" />
+            Sexe
+            <select asp-for="Patient.Sexe_p" class="form-control">
+            <option value="" >Sélectionner le sexe</option>
+            <option value="M">M</option>
+            <option value="F">F</option>
+            <option value="autre">Pas préciser</option>
+            
+            </select>
 
             <span asp-validation-for="Patient.Sexe_p" class="text-danger"></span>
         </div>
