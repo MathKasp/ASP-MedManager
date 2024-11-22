@@ -9,8 +9,6 @@ public class ApplicationDbContext : IdentityDbContext<Medecin>
 {
     public DbSet<Patient> Patients => Set<Patient>();
 
-    // public DbSet<Medecin> Medecins => Set<Medecin>();
-
     public DbSet<Allergie> Allergies => Set<Allergie>();
 
     public DbSet<Antecedent> Antecedents => Set<Antecedent>();
