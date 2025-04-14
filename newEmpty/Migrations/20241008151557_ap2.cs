@@ -329,7 +329,7 @@ namespace newEmpty.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Posologie = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Duree_traitement = table.Column<string>(type: "longtext", nullable: false)
+                    Duree_traitement = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Instructions_specifique = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),

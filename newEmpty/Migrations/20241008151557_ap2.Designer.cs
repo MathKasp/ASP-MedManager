@@ -374,9 +374,9 @@ namespace newEmpty.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("OrdonnanceId"));
 
-                    b.Property<string>("Duree_traitement")
+                    b.Property<int>("Duree_traitement")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("int");
 
                     b.Property<string>("Instructions_specifique")
                         .IsRequired()

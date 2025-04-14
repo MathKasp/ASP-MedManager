@@ -12,7 +12,7 @@ public class OrdonnanceViewModel
     [Required(ErrorMessage = "La posologie est requise")]
     public string Posologie { get; set; }
  
-    public string Duree_traitement {get; set;}
+    public int Duree_traitement {get; set;}
 
  
     [Required(ErrorMessage = "Instructions requises")]

@@ -75,10 +75,16 @@ public class OrdonnancePdfGenerateur
             document.Add(new Paragraph("\n"));
             document.Add(new Paragraph("\n"));
 
-            
+
             document.Add(new Paragraph($"{ordonnance.Posologie}")
                 .SetFontSize(10));
             document.Add(new Paragraph($"{ordonnance.Instructions_specifique}")
+                .SetFontSize(10));
+
+            document.Add(new Paragraph("Durée du traitement en Heures")
+                .SetFont(bold)
+                .SetFontSize(12));
+            document.Add(new Paragraph($"{ordonnance.Duree_traitement}")
                 .SetFontSize(10));
 
             foreach (var medicament in ordonnance.Medicaments)

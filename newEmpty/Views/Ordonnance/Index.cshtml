@@ -7,72 +7,92 @@
     </head>
 
     <body>
-        <h1 class="centrer">Gestions des ordonnances</h1>
 
-        <input type="text" id="EntreeRecherche" placeholder="Rechercher... ">
+        @if (Model.LongCount() > 0)
+        {
+            <h1 class="centrer">Gestions des ordonnances</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th scope="col">Patient</th>
-                    <th scope="col">Details de l'ordonnance</th>
-                    <th scope="col"> Retirer une ordonnance</th>
-                    <th scope="col"> Modifier une ordonnance </th>
-                </tr>
-            </thead>
+            <input type="text" id="EntreeRecherche" placeholder="Rechercher... ">
 
-            <tbody>
-                @foreach (var ordonnance in Model)
-                {
-                    <tr class="element">
-                        <td></td>
-                        <td scope="row" class="text_search">@ordonnance.Patient.Nom_p @ordonnance.Patient.Prenom_p </td>
-
-                        <td scope="row"><a asp-controller="Ordonnance" asp-action="ShowDetails"
-                                asp-route-id="@ordonnance.OrdonnanceId">
-                                Détail</a></td>
-
-                        <td scope="row"><a asp-controller="Ordonnance" asp-action="Remove" asp-route-id="@ordonnance.OrdonnanceId">
-                                Retirer</a> </td>
-
-                        <td scope="row"><a asp-controller="Ordonnance" asp-action="Edit" asp-route-id="@ordonnance.OrdonnanceId">
-                                Modifier</a> </td>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Patient</th>
+                        <th scope="col">Details de l'ordonnance</th>
+                        <th scope="col"> Retirer une ordonnance</th>
+                        <th scope="col"> Modifier une ordonnance </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
 
-        <div>
-            <button type="button" class="btn btn-light">
-                <a asp-controller="Ordonnance" asp-action="Add"> Ajouter une ordonnance </a>
-            </button>
-        </div>
+                <tbody>
+                    @foreach (var ordonnance in Model)
+                    {
+                        <tr class="element">
+                            <td></td>
+                            <td scope="row" class="text_search">@ordonnance.Patient.Nom_p @ordonnance.Patient.Prenom_p </td>
 
+                            <td scope="row"><a asp-controller="Ordonnance" asp-action="ShowDetails"
+                                    asp-route-id="@ordonnance.OrdonnanceId">
+                                    Détail</a></td>
 
+                            <td scope="row"><a asp-controller="Ordonnance" asp-action="Remove"
+                                    asp-route-id="@ordonnance.OrdonnanceId">
+                                    Retirer</a> </td>
 
-        <script>
-            document.getElementById('EntreeRecherche').addEventListener('keyup', function () {
-
-                var texteRecherche = this.value.toLowerCase();
-                var patientElement = document.querySelectorAll('.element');
-
-                patientElement.forEach(function (card) {
-                    var nomPatient = card.querySelector('.text_search').textContent.toLowerCase();
-                    if (nomPatient.includes (texteRecherche)) {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
+                            <td scope="row"><a asp-controller="Ordonnance" asp-action="Edit"
+                                    asp-route-id="@ordonnance.OrdonnanceId">
+                                    Modifier</a> </td>
+                        </tr>
                     }
-                });
-            });
+                </tbody>
+            </table>
 
-        </script>
+            <div>
+                <button type="button" class="btn btn-light">
+                    <a asp-controller="Ordonnance" asp-action="Add"> Ajouter une ordonnance </a>
+                </button>
+            </div>
+
+
+
+            <script>
+                document.getElementById('EntreeRecherche').addEventListener('keyup', function () {
+
+                    var texteRecherche = this.value.toLowerCase();
+                    var patientElement = document.querySelectorAll('.element');
+
+                    patientElement.forEach(function (card) {
+                        var nomPatient = card.querySelector('.text_search').textContent.toLowerCase();
+                        if (nomPatient.includes(texteRecherche)) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+
+            </script>
+        }
+        @if (Model.LongCount() < 1)
+        {
+            <div class="red"><i class="bi bi-exclamation-circle-fill"></i>Attention :     Pour l'heure, aucune ordonnance n'a encore été crée<i class="bi bi-exclamation-circle-fill"></i></div>
+
+            <div>
+                <button type="button" class="btn btn-light">
+                    <a asp-controller="Ordonnance" asp-action="Add"> Ajouter une ordonnance </a>
+                </button>
+            </div>
+        }
     </body>
 
 
 
     </html>
-
+    <style>
+        .red {
+            color: rgb(212, 8, 8);
+        }
+    </style>
 
 }

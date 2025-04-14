@@ -11,7 +11,7 @@ public class Ordonnance
 
     public required string Posologie {get; set;}
 
-    public required string Duree_traitement {get; set;}
+    public required int Duree_traitement {get; set;}
 
     public string? Instructions_specifique {get; set;}
 

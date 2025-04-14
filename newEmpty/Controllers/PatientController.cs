@@ -92,16 +92,19 @@ namespace newEmpty.Controllers
         }
 
         [HttpPost]
-        public IActionResult RemoveConfirm(int PatientId)
+        public IActionResult RemoveConfirm(int patientId)
         {
-            List<Patient> patients = new List<Patient>();
-            patients = _context.Patients.ToList();
+            var patient = _context.Patients.Include(p => p.Ordonnances)
+            .FirstOrDefault(s => s.PatientId == patientId);
 
-            Patient? dpatient = patients.FirstOrDefault(s => s.PatientId == PatientId);
-
-            if (dpatient != null)
+            if (patient != null)
             {
-                _context.Patients.Remove(dpatient);
+                if(patient.Ordonnances != null)
+                {
+                    //Show message.
+                }
+
+                _context.Patients.Remove(patient);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -120,6 +123,15 @@ namespace newEmpty.Controllers
                 .Include(p => p.Allergies)
                 .FirstOrDefaultAsync(p => p.PatientId == id);
 
+            var patient2 = await _context.Patients
+            .Select(p => new PatientViewModel{
+                Patient = p,
+                Antecedents = p.Antecedents,
+                Allergies = p.Allergies,
+                SelectedAntecedentIds = p.Antecedents.Select(a => a.AntecedentId).ToList(),
+                SelectedAllergieIds = p.Allergies.Select(a => a.AllergieId).ToList(),
+            }).FirstOrDefaultAsync(p => p.Patient.PatientId == id);
+
             if (patient == null)
             {
                 return NotFound();
@@ -131,8 +143,8 @@ namespace newEmpty.Controllers
                 Patient = patient,
                 Antecedents = await _context.Antecedents.ToListAsync(),
                 Allergies = await _context.Allergies.ToListAsync(),
-                SelectedAntecedentIds = patient.Antecedents.Select(a => a.AntecedentId).ToList() ?? new List<int>(),
-                SelectedAllergieIds = patient.Allergies.Select(a => a.AllergieId).ToList() ?? new List<int>()
+                SelectedAntecedentIds = patient.Antecedents.Select(a => a.AntecedentId).ToList() ?? [],
+                SelectedAllergieIds = patient.Allergies.Select(a => a.AllergieId).ToList() ?? []
             };
 
             return View(viewModel);
