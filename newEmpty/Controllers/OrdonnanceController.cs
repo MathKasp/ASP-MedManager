@@ -420,7 +420,7 @@ namespace newEmpty.Controllers
                 .Include(o => o.Patient)
                 .FirstOrDefaultAsync(o => o.OrdonnanceId == OrdonnanceId);
 
-            var repository = Path.Combine(Directory.GetCurrentDirectory(), "PDF");
+            var repository = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "PDF"); 
 
             if (ordonnance != null && Medecin != null && ordonnance.Patient != null)
             {
