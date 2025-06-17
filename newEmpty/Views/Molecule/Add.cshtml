@@ -1,0 +1,39 @@
+@model Molecule
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout</title>
+</head>
+
+<body>
+    <h1> Bienvenue dans l'espace pour ajouter une Molécule </h1>
+
+    <form asp-action="AddConfirmed" asp-controller="Molecule" method="post">
+
+        <input asp-for="Moleculeid" type="hidden" value="0" />
+
+        <div class="form-group">
+
+            <label asp-for="Nom"></label>
+            <input asp-for="Nom" class="form-control" />
+
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+
+        <br />
+        <br />
+
+        <input type="submit" value="Créer une nouveau molécule" class="btn btn-primary" />
+        <a asp-action="Index" type="button" class="btn btn-secondary">Retour</a> 
+    </form>
+
+    @* Permet de visualiser le resume de l'ensemble des erreurs de validation, ceci est un tag helper *@
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+</body>
+
+</html>

@@ -12,8 +12,8 @@ using NewEmpty.Data;
 namespace newEmpty.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241008151557_ap2")]
-    partial class ap2
+    [Migration("20250617132745_ap2_sql")]
+    partial class ap2_sql
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,21 @@ namespace newEmpty.Migrations
                     b.HasIndex("PatientsPatientId");
 
                     b.ToTable("PatientAntecedent", (string)null);
+                });
+
+            modelBuilder.Entity("MedicamentMolecule", b =>
+                {
+                    b.Property<int>("MedicamentsMedicamentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MoleculesMoleculeid")
+                        .HasColumnType("int");
+
+                    b.HasKey("MedicamentsMedicamentId", "MoleculesMoleculeid");
+
+                    b.HasIndex("MoleculesMoleculeid");
+
+                    b.ToTable("MedicamentMolecule", (string)null);
                 });
 
             modelBuilder.Entity("MedicamentOrdonnance", b =>
@@ -366,6 +381,23 @@ namespace newEmpty.Migrations
                     b.ToTable("Medicaments");
                 });
 
+            modelBuilder.Entity("newEmpty.Models.Molecule", b =>
+                {
+                    b.Property<int>("Moleculeid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Moleculeid"));
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Moleculeid");
+
+                    b.ToTable("Molecules");
+                });
+
             modelBuilder.Entity("newEmpty.Models.Ordonnance", b =>
                 {
                     b.Property<int>("OrdonnanceId")
@@ -375,11 +407,9 @@ namespace newEmpty.Migrations
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("OrdonnanceId"));
 
                     b.Property<int>("Duree_traitement")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Instructions_specifique")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("MedecinId")
@@ -487,6 +517,21 @@ namespace newEmpty.Migrations
                     b.HasOne("newEmpty.Models.Patient", null)
                         .WithMany()
                         .HasForeignKey("PatientsPatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MedicamentMolecule", b =>
+                {
+                    b.HasOne("newEmpty.Models.Medicament", null)
+                        .WithMany()
+                        .HasForeignKey("MedicamentsMedicamentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("newEmpty.Models.Molecule", null)
+                        .WithMany()
+                        .HasForeignKey("MoleculesMoleculeid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

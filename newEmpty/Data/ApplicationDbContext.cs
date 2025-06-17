@@ -17,6 +17,8 @@ public class ApplicationDbContext : IdentityDbContext<Medecin>
 
     public DbSet<Ordonnance> Ordonnances => Set<Ordonnance>();
 
+    public DbSet<Molecule> Molecules => Set<Molecule>();
+
 
     // Constructeur 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -46,6 +48,11 @@ public class ApplicationDbContext : IdentityDbContext<Medecin>
             .HasMany(a => a.Medicaments)
             .WithMany(m => m.Antecedents)
             .UsingEntity(j => j.ToTable("MedicamentAntecedent"));
+
+        modelBuilder.Entity<Medicament>()
+            .HasMany(a => a.Molecules)
+            .WithMany(m => m.Medicaments)
+            .UsingEntity(j => j.ToTable("MedicamentMolecule"));
 
         modelBuilder.Entity<Ordonnance>()
             .HasOne(a => a.Medecin)

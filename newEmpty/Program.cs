@@ -14,7 +14,7 @@ var serverVersion = new MySqlServerVersion(new Version(11, 0, 2));
 
 // Ajout du dbcontext au service container
 builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), serverVersion)
+    options => options.UseMySql(builder.Configuration.GetConnectionString("DevConnection"), serverVersion)
 );
 
 builder.Services.AddIdentity<Medecin, IdentityRole>(options =>

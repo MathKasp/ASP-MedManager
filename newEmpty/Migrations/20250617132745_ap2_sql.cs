@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace newEmpty.Migrations
 {
     /// <inheritdoc />
-    public partial class ap2 : Migration
+    public partial class ap2_sql : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -120,6 +120,21 @@ namespace newEmpty.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Medicaments", x => x.MedicamentId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Molecules",
+                columns: table => new
+                {
+                    Moleculeid = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Molecules", x => x.Moleculeid);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -322,6 +337,31 @@ namespace newEmpty.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "MedicamentMolecule",
+                columns: table => new
+                {
+                    MedicamentsMedicamentId = table.Column<int>(type: "int", nullable: false),
+                    MoleculesMoleculeid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicamentMolecule", x => new { x.MedicamentsMedicamentId, x.MoleculesMoleculeid });
+                    table.ForeignKey(
+                        name: "FK_MedicamentMolecule_Medicaments_MedicamentsMedicamentId",
+                        column: x => x.MedicamentsMedicamentId,
+                        principalTable: "Medicaments",
+                        principalColumn: "MedicamentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MedicamentMolecule_Molecules_MoleculesMoleculeid",
+                        column: x => x.MoleculesMoleculeid,
+                        principalTable: "Molecules",
+                        principalColumn: "Moleculeid",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Ordonnances",
                 columns: table => new
                 {
@@ -329,9 +369,8 @@ namespace newEmpty.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Posologie = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Duree_traitement = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Instructions_specifique = table.Column<string>(type: "longtext", nullable: false)
+                    Duree_traitement = table.Column<int>(type: "int", nullable: false),
+                    Instructions_specifique = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MedecinId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -478,6 +517,11 @@ namespace newEmpty.Migrations
                 column: "MedicamentsMedicamentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicamentMolecule_MoleculesMoleculeid",
+                table: "MedicamentMolecule",
+                column: "MoleculesMoleculeid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MedicamentOrdonnance_OrdonnancesOrdonnanceId",
                 table: "MedicamentOrdonnance",
                 column: "OrdonnancesOrdonnanceId");
@@ -528,6 +572,9 @@ namespace newEmpty.Migrations
                 name: "MedicamentAntecedent");
 
             migrationBuilder.DropTable(
+                name: "MedicamentMolecule");
+
+            migrationBuilder.DropTable(
                 name: "MedicamentOrdonnance");
 
             migrationBuilder.DropTable(
@@ -538,6 +585,9 @@ namespace newEmpty.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Molecules");
 
             migrationBuilder.DropTable(
                 name: "Medicaments");

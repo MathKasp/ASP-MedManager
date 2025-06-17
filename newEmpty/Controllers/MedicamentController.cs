@@ -118,6 +118,7 @@ namespace newEmpty.Controllers
             var medicament = await _context.Medicaments
                 .Include(p => p.Antecedents)
                 .Include(p => p.Allergies)
+                .Include(p => p.Molecules)
                 .FirstOrDefaultAsync(p => p.MedicamentId == id);
 
             if (medicament == null)
@@ -131,8 +132,10 @@ namespace newEmpty.Controllers
                 Medicament = medicament,
                 Antecedents = await _context.Antecedents.ToListAsync(),
                 Allergies = await _context.Allergies.ToListAsync(),
+                Molecules = await _context.Molecules.ToListAsync(),
                 SelectedAntecedentIds = medicament.Antecedents.Select(a => a.AntecedentId).ToList() ?? new List<int>(),
-                SelectedAllergieIds = medicament.Allergies.Select(a => a.AllergieId).ToList() ?? new List<int>()
+                SelectedAllergieIds = medicament.Allergies.Select(a => a.AllergieId).ToList() ?? new List<int>(),
+                SelectedMoleculeIds = medicament.Molecules.Select(a => a.Moleculeid).ToList() ?? new List<int>()
             };
 
             return View(viewModel);
@@ -154,6 +157,7 @@ namespace newEmpty.Controllers
                     var medicament = await _context.Medicaments
                         .Include(p => p.Antecedents)
                         .Include(p => p.Allergies)
+                        .Include(p => p.Molecules)
                         .FirstOrDefaultAsync(p => p.MedicamentId == id);
 
                     if (medicament == null)
@@ -187,6 +191,19 @@ namespace newEmpty.Controllers
                             medicament.Antecedents.Add(antecedent);
                         }
                     }
+
+                    medicament.Molecules.Clear();
+                    if (viewModel.SelectedMoleculeIds != null)
+                    {
+                        var selectedMolecules = await _context.Molecules
+                            .Where(a => viewModel.SelectedMoleculeIds.Contains(a.Moleculeid))
+                            .ToListAsync();
+                        foreach (var antecedent in selectedMolecules)
+                        {
+                            medicament.Molecules.Add(antecedent);
+                        }
+                    }
+
                     _context.Entry(medicament).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -206,6 +223,7 @@ namespace newEmpty.Controllers
 
             viewModel.Antecedents = await _context.Antecedents.ToListAsync();
             viewModel.Allergies = await _context.Allergies.ToListAsync();
+            viewModel.Molecules = await _context.Molecules.ToListAsync();
             return View(viewModel);
         }
 
@@ -222,6 +240,7 @@ namespace newEmpty.Controllers
             Medicament? medicament = _context.Medicaments
                 .Include(p => p.Allergies)
                 .Include(p => p.Antecedents)
+                .Include(p => p.Molecules)
                 .FirstOrDefault(p => p.MedicamentId == id);
 
             if (medicament == null)
@@ -234,8 +253,10 @@ namespace newEmpty.Controllers
                 Medicament = medicament,
                 Antecedents = _context.Antecedents.ToList(),
                 Allergies = _context.Allergies.ToList(),
+                Molecules = _context.Molecules.ToList(),
                 SelectedAntecedentIds = medicament.Antecedents.Select(a => a.AntecedentId).ToList() ?? new List<int>(),
-                SelectedAllergieIds = medicament.Allergies.Select(a => a.AllergieId).ToList() ?? new List<int>()
+                SelectedAllergieIds = medicament.Allergies.Select(a => a.AllergieId).ToList() ?? new List<int>(),
+                SelectedMoleculeIds = medicament.Molecules.Select(a => a.Moleculeid).ToList() ?? new List<int>()
             };
 
             return View(viewmodel);
